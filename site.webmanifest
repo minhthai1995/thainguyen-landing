@@ -1,0 +1,14 @@
+{
+  "name": "Thai Nguyen, PhD · AI Engineer",
+  "short_name": "Thai Nguyen",
+  "description": "Tư vấn & xây dựng giải pháp AI cho doanh nghiệp Việt Nam",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2F47F9",
+  "background_color": "#2F47F9",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
