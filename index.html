@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thai Nguyen, PhD | Kỹ sư AI & Tư vấn giải pháp AI cho doanh nghiệp Việt</title>
+<meta name="description" content="Thai Nguyen – Tiến sĩ Monash University, ML Engineer tại Culture Amp. Xây dựng hệ thống RAG, AI Agent, tích hợp LLM, data science và full-stack cho doanh nghiệp Việt Nam.">
+<meta property="og:title" content="Thai Nguyen, PhD | AI Engineer">
+<meta property="og:description" content="RAG · AI Agent · LLM · Data Science · Full-stack. Từ ý tưởng đến sản phẩm AI chạy thật.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alumni+Sans:wght@300;400;600;700;800;900&family=Be+Vietnam+Pro:wght@300;400;500;600&family=Gasoek+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#2F47F9;
+  --accent-d:#2438E6;
+  --accent-l:#4C62FB;
+  --accent-xl:#6C80FC;
+  --ink:#000;
+  --paper:#fff;
+  --muted:rgba(255,255,255,.72);
+  --frame:8px;
+  --header:70px;
+  --display:"Alumni Sans","Oswald",system-ui,sans-serif;
+  --block:"Gasoek One","Alumni Sans",sans-serif;
+  --body:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+body.gold{
+  --accent:#FFAE00;
+  --accent-d:#E89600;
+  --accent-l:#FFC23D;
+  --accent-xl:#FFD778;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + var(--frame))}
+body{background:var(--ink);color:var(--ink);font-family:var(--body);padding:var(--frame);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img,svg{display:block}
+.site{background:var(--accent);transition:background .6s ease;position:relative;overflow:clip}
+.display{font-family:var(--display);text-transform:uppercase;line-height:.85;letter-spacing:-.01em}
+
+/* ---------- preloader ---------- */
+.loader{position:fixed;inset:0;background:#fff;z-index:100;display:grid;place-items:center;transition:opacity .5s ease .1s,visibility .5s ease .1s}
+.loader.done{opacity:0;visibility:hidden}
+.loader svg{width:150px;height:auto}
+.loader svg .p{fill:var(--accent);transform-box:fill-box;transform-origin:bottom;animation:rise .7s cubic-bezier(.2,.9,.3,1.3) both}
+.loader svg .p:nth-child(2){animation-delay:.08s}.loader svg .p:nth-child(3){animation-delay:.16s}.loader svg .p:nth-child(4){animation-delay:.24s}
+@keyframes rise{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+/* ---------- header ---------- */
+.header{position:sticky;top:0;z-index:50;height:var(--header);background:var(--accent);border-bottom:1.5px solid var(--ink);display:flex;align-items:stretch;transition:background .6s ease}
+.logo{display:flex;align-items:center;padding:0 24px;text-decoration:none}
+.logo svg{height:30px;width:auto}
+.logo svg .p{fill:var(--ink)}
+.nav{margin-left:auto;display:flex;align-items:center;gap:38px;padding-right:38px}
+.nav a,.cta{font-family:var(--display);font-weight:800;font-size:21px;text-transform:uppercase;text-decoration:none;letter-spacing:.01em}
+.nav a{position:relative}
+.nav a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .3s}
+.nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.cta{display:flex;align-items:center;padding:0 22px;border-left:1.5px solid var(--ink);transition:background .25s,color .25s}
+.cta:hover{background:var(--ink);color:var(--accent)}
+.lang{background:none;border:0;border-left:1.5px solid var(--ink);padding:0 20px;font-family:var(--display);font-weight:800;font-size:21px;cursor:pointer;color:var(--ink);transition:background .25s,color .25s}
+.lang:hover{background:var(--ink);color:var(--accent)}
+.burger{display:none;background:none;border:0;border-left:1.5px solid var(--ink);width:var(--header);cursor:pointer}
+.burger span{display:block;width:26px;height:3px;background:var(--ink);margin:5px auto;transition:transform .3s,opacity .3s}
+.menu-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.menu-open .burger span:nth-child(2){opacity:0}
+.menu-open .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:calc(100vh - var(--header) - var(--frame)*2);display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%}
+.hero-bg .c1{fill:var(--accent-d)}.hero-bg .c2{fill:var(--accent-l)}.hero-bg .c3{fill:var(--accent-xl)}
+.cloud{animation:drift 40s linear infinite alternate}
+.cloud.slow{animation-duration:65s}
+@keyframes drift{from{transform:translateX(-40px)}to{transform:translateX(60px)}}
+.hero-copy{position:relative;z-index:2;padding:6vh 5vw;max-width:720px}
+.hero h1{font-size:clamp(96px,17vw,280px);font-weight:900;color:#fff}
+.hero p{margin-top:28px;font-size:clamp(17px,1.5vw,21px);line-height:1.55;color:#fff;max-width:560px}
+.hero p strong{font-weight:600}
+.hero-actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px}
+.btn{display:inline-flex;align-items:stretch;border:2px solid var(--ink);text-decoration:none;font-family:var(--display);font-weight:800;font-size:22px;text-transform:uppercase;background:transparent;cursor:pointer;color:var(--ink);transition:background .25s,color .25s}
+.btn span{padding:12px 18px;display:flex;align-items:center}
+.btn i{font-style:normal;border-left:2px solid var(--ink);width:52px;display:grid;place-items:center;font-size:24px}
+.btn:hover{background:var(--ink);color:#fff}
+.btn:hover i{border-color:#fff}
+.btn.solid{background:var(--ink);color:#fff}.btn.solid i{border-color:#fff}
+.btn.solid:hover{background:#fff;color:var(--ink)}.btn.solid:hover i{border-color:var(--ink)}
+.hero-art{position:absolute;right:2vw;bottom:0;width:min(46vw,700px);aspect-ratio:1;z-index:1}
+.hero-face{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:bottom;animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.hero-rings{position:absolute;left:-15%;top:-20%;width:130%;height:auto;overflow:visible}
+.ping{transform-box:fill-box;transform-origin:center;animation:ping 2.4s ease-out infinite}
+.ping:nth-of-type(2){animation-delay:.8s}.ping:nth-of-type(3){animation-delay:1.6s}
+@keyframes ping{from{transform:scale(.1);opacity:.95}to{transform:scale(1);opacity:0}}
+.scan{transform-origin:0 0;animation:scan 3s linear infinite}
+@keyframes scan{to{transform:rotate(360deg)}}
+
+/* ---------- section heads ---------- */
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;padding:90px 5vw 40px}
+.sec-head h2{font-size:clamp(90px,15vw,240px);font-weight:900;color:var(--ink)}
+.sec-head p{max-width:420px;font-size:18px;line-height:1.55;padding-bottom:12px}
+.sec-head p a{font-weight:600}
+
+/* ---------- work ---------- */
+.work{position:relative;padding-bottom:0;overflow:hidden}
+.work .sec-head h2{color:#fff}
+.work-stage{position:relative;height:clamp(640px,78vh,760px)}
+.hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:78%}
+.carousel{position:absolute;left:50%;top:0;transform:translateX(-50%);width:min(1060px,86vw);z-index:3}
+.slide{display:none;grid-template-columns:1fr 1.15fr;border:2px solid var(--ink);border-radius:8px;overflow:hidden;background:var(--ink);box-shadow:0 30px 60px rgba(0,0,0,.25)}
+.slide.on{display:grid;animation:slideIn .55s cubic-bezier(.2,.8,.2,1)}
+@keyframes slideIn{from{opacity:0;transform:translateY(24px) rotate(-1deg)}to{opacity:1;transform:none}}
+.slide-code{background:var(--ink);color:#fff;font-family:var(--block);font-size:clamp(70px,9vw,128px);line-height:1;padding:24px 34px 18px;letter-spacing:.01em}
+.slide-info{padding:24px 34px 30px;position:relative;min-height:300px;display:flex;flex-direction:column}
+.slide-info small{font-family:var(--display);font-weight:800;font-size:17px;text-transform:uppercase}
+.slide-info h3{font-family:var(--display);font-weight:400;font-size:clamp(44px,5vw,72px);line-height:.9;text-transform:uppercase;margin:6px 0 18px}
+.slide-info .desc{font-size:15px;line-height:1.55;max-width:420px;margin-bottom:14px}
+.tagline{display:flex;flex-wrap:wrap;gap:6px 26px;border-top:1.5px solid var(--ink);padding-top:14px;margin-bottom:24px}
+.tagline span{position:relative;font-family:var(--display);font-weight:800;font-size:15px;text-transform:uppercase}
+.tagline span::before{content:"";position:absolute;left:50%;top:-15px;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--ink)}
+.slide-foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end}
+.count{font-family:var(--display);font-weight:600;font-size:18px}
+.slide-art{position:relative;background:#0b0b18;min-height:420px;border-left:2px solid var(--ink)}
+.slide-art svg{position:absolute;inset:0;width:100%;height:100%}
+.arrow{position:absolute;top:210px;z-index:4;width:110px;height:110px;border-radius:50%;background:var(--ink);color:#fff;border:0;font-size:34px;cursor:pointer;transition:transform .25s}
+.arrow.prev{left:calc(50% - min(530px,43vw) - 55px)}.arrow.next{right:calc(50% - min(530px,43vw) - 55px)}
+.arrow.prev:hover{transform:translateX(8px)}.arrow.next:hover{transform:translateX(-8px)}
+.cyclist{position:absolute;right:9%;bottom:10%;width:170px;z-index:4}
+
+/* ---------- services ---------- */
+.services{position:relative;background:linear-gradient(var(--accent),var(--accent-d) 60%,var(--accent));padding-bottom:120px}
+.rail-wrap{position:relative}
+.rail{position:absolute;left:0;right:0;top:48px;height:14px;background:linear-gradient(#555,#222 60%,#111);border-top:1px solid #777;z-index:1}
+.cards{position:relative;z-index:2;display:flex;gap:34px;overflow-x:auto;padding:20px 5vw 60px;scroll-snap-type:x proximity;scrollbar-width:none;cursor:grab}
+.cards::-webkit-scrollbar{display:none}
+.cards.drag{cursor:grabbing;scroll-snap-type:none}
+.card{flex:0 0 380px;scroll-snap-align:start;border-radius:26px;overflow:hidden;border:2px solid var(--ink);background:var(--ink);transform-origin:50% 40px;transform:rotate(var(--r,0deg));transition:transform .5s cubic-bezier(.3,1.6,.5,1);user-select:none;box-shadow:0 20px 40px rgba(0,0,0,.25);position:relative}
+.card:hover{transform:rotate(calc(var(--r,0deg) * -1.4))}
+.card-top{height:210px;position:relative;padding-top:18px}
+.pin{position:absolute;left:50%;top:14px;transform:translateX(-50%);width:66px;height:66px;border-radius:10px;background:var(--c);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:6px 0;font-family:var(--display);font-weight:800;font-size:11px}
+.pin b{width:18px;height:18px;border-radius:50%;background:#1b2cb8;border:3px solid #333;box-shadow:inset 0 0 0 2px #777}
+.card-code{position:absolute;left:22px;right:22px;bottom:4px;font-family:var(--block);font-size:112px;line-height:1;color:var(--c);transform:rotate(-3deg);letter-spacing:-.02em;white-space:nowrap}
+.card-body{background:var(--g);padding:22px 26px 20px;min-height:360px;display:flex;flex-direction:column}
+.card-body small{font-family:var(--display);font-weight:800;font-size:14px;text-transform:uppercase}
+.card-body h3{font-family:var(--display);font-weight:400;font-size:44px;line-height:.95;text-transform:uppercase;margin:4px 0 12px}
+.card-body p{font-size:14px;line-height:1.5;margin-bottom:18px}
+.timeline{position:relative;height:84px;margin:0 -26px}
+.timeline::before{content:"";position:absolute;left:0;right:0;top:42px;height:1.5px;background:var(--ink);transform:rotate(-2.5deg)}
+.timeline span{position:absolute;font-family:var(--display);font-weight:800;font-size:12.5px;text-transform:uppercase;white-space:nowrap;transform:translateX(-50%)}
+.timeline span.up{top:10px}.timeline span.dn{top:58px}
+.timeline span.up::after{content:"";position:absolute;left:50%;top:15px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--ink)}
+.timeline span.dn::before{content:"";position:absolute;left:50%;top:-14px;transform:translateX(-50%);border:5px solid transparent;border-bottom-color:var(--ink)}
+.card-bottom{margin-top:auto;border-top:1.5px dashed var(--ink);padding-top:10px;display:flex;justify-content:space-between;font-family:var(--display);font-weight:300;font-size:74px;line-height:.85;color:transparent;-webkit-text-stroke:1.2px var(--ink)}
+.hint{padding:0 5vw;font-family:var(--display);font-weight:800;font-size:18px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+
+/* ---------- about ---------- */
+.about{position:relative;padding:110px 5vw 160px;overflow:hidden}
+.city{position:absolute;inset:0;width:100%;height:100%}
+.about-card{position:relative;z-index:2;max-width:1220px;margin:0 auto;background:#fff;border:2px solid var(--ink);border-radius:8px;box-shadow:0 30px 70px rgba(0,0,0,.35);overflow:hidden}
+.about-grid{display:grid;grid-template-columns:1.1fr 1.2fr .8fr;gap:48px;padding:48px 40px 56px}
+.about-grid h2{font-size:clamp(80px,9vw,150px);font-weight:400}
+.about-grid h4{font-family:var(--display);font-weight:600;font-size:24px;text-transform:uppercase;margin-bottom:10px}
+.about-grid p{font-size:16px;line-height:1.6;margin-bottom:12px}
+.roster{list-style:none;font-size:16px;line-height:1.55}
+.creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.creds span{font-family:var(--display);font-weight:800;font-size:15px;text-transform:uppercase;border:1.5px solid var(--ink);border-radius:999px;padding:4px 12px}
+.ticker{display:flex;border-top:2px solid var(--ink)}
+.score{display:flex;align-items:center;gap:10px;padding:10px 12px;border-right:2px solid var(--ink);flex:0 0 auto}
+.score div{background:var(--ink);color:#fff;border-radius:4px;width:66px;height:70px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--display)}
+.score div small{font-size:12px;font-weight:600;letter-spacing:.04em}
+.score div b{font-size:44px;font-weight:400;line-height:.9}
+.score em{font-style:normal;font-family:var(--display);font-size:30px}
+.marquee{overflow:hidden;display:flex;align-items:center;flex:1}
+.marquee-track{display:flex;white-space:nowrap;animation:marquee 60s linear infinite;font-family:var(--display);font-weight:400;font-size:clamp(40px,4.6vw,68px);text-transform:uppercase}
+.marquee-track span{padding:0 18px}
+.marquee-track span.sl{color:#888;padding:0}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ---------- contact ---------- */
+.contact{position:relative;min-height:760px;overflow:hidden;border-top:2px solid var(--ink)}
+.contact-wave{position:absolute;left:0;right:0;top:0;width:100%;height:120px}
+.chip{position:absolute;left:-4vw;bottom:-60px;width:min(66vw,900px)}
+.pulse{animation:pulse 2.8s ease-in-out infinite}
+.pulse:nth-child(odd){animation-delay:1.4s}
+@keyframes pulse{50%{opacity:.25}}
+.contact-copy{position:relative;z-index:2;margin-left:auto;padding:150px 5vw 90px;max-width:620px}
+.contact-copy h2{font-size:clamp(80px,10vw,170px);font-weight:900;color:#fff;margin-bottom:34px}
+.contact-copy p{font-size:18px;line-height:1.55;margin-bottom:30px;max-width:460px}
+.links a{display:block;font-size:clamp(26px,2.6vw,40px);line-height:1.3;color:#fff;text-decoration:none;width:max-content;max-width:100%;overflow-wrap:anywhere;position:relative}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;background:#fff;transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.links a:hover::after{transform:scaleX(1);transform-origin:left}
+
+/* ---------- footer ---------- */
+.footer{background:var(--ink);color:#fff;padding:120px 20px 110px;display:flex;flex-direction:column;align-items:center;gap:22px}
+.footer svg{height:64px;width:auto}.footer svg .p{fill:#fff}
+.biz{font-style:normal;display:flex;flex-direction:column;gap:8px;margin-top:34px;font-size:15px;line-height:1.5;max-width:460px}
+.biz b{display:inline-block;min-width:70px;font-family:"Alumni Sans",sans-serif;font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+.footer small.foot-biz{text-transform:none;letter-spacing:.02em;opacity:.6;text-align:center}
+.footer small{font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.8}
+
+/* ---------- gold toggle ---------- */
+.gold-btn{position:fixed;left:50%;bottom:var(--frame);transform:translateX(-50%);z-index:60;background:var(--ink);color:#fff;border:0;border-radius:14px 14px 0 0;padding:10px 16px 8px;display:flex;align-items:center;gap:14px;font-family:var(--display);font-weight:800;font-size:20px;text-transform:uppercase;cursor:pointer}
+.gold-btn::before,.gold-btn::after{content:"";position:absolute;bottom:0;width:14px;height:14px;background:radial-gradient(circle at 0 0,transparent 13.5px,var(--ink) 14px)}
+.gold-btn::before{left:-14px;transform:scaleX(-1)}.gold-btn::after{right:-14px}
+.switch{width:28px;height:13px;border-radius:9px;background:#ddd;position:relative}
+.switch::after{content:"";position:absolute;left:2px;top:2px;width:9px;height:9px;border-radius:50%;background:#999;transition:left .25s,background .25s}
+body.gold .switch{background:#FFAE00}
+body.gold .switch::after{left:17px;background:#000}
+body.gold .hero h1,body.gold .hero p,body.gold .work .sec-head h2,body.gold .contact-copy h2,body.gold .links a{color:#000}
+body.gold .links a::after{background:#000}
+#snow{position:fixed;inset:0;pointer-events:none;z-index:55;display:none}
+body.gold #snow{display:block}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:1000px){
+  .nav{position:fixed;top:calc(var(--header) + var(--frame));left:var(--frame);right:var(--frame);background:var(--accent);flex-direction:column;align-items:flex-start;gap:0;padding:0;border-bottom:2px solid var(--ink);transform:translateY(-120%);transition:transform .4s cubic-bezier(.2,.8,.2,1);z-index:-1}
+  .nav a{font-size:44px;padding:10px 24px;width:100%;border-top:1.5px solid var(--ink)}
+  .menu-open .nav{transform:none}
+  .burger{display:block}
+  .lang{margin-left:auto}
+  .cta{display:none}
+  .hero{flex-direction:column;align-items:flex-start;padding-bottom:0}
+  .hero-art{position:relative;right:auto;width:min(100%,520px);margin:0 auto}
+  .slide{grid-template-columns:1fr}
+  .slide-art{min-height:260px;border-left:0;border-top:2px solid var(--ink)}
+  .work-stage{height:auto;padding-bottom:180px}
+  .carousel{position:relative;left:auto;transform:none;margin:0 auto;width:calc(100% - 32px)}
+  .arrow{top:auto;bottom:-150px;width:84px;height:84px;font-size:28px}
+  .arrow.prev{left:calc(50% - 100px);padding:0}.arrow.next{right:calc(50% - 100px);padding:0}
+  .cyclist{display:none}
+  .about-grid{grid-template-columns:1fr;gap:26px;padding:32px 24px 40px}
+  .sec-head{flex-direction:column;align-items:flex-start;gap:16px;padding:70px 16px 30px}
+  .chip{width:120vw;left:-20vw;opacity:.9}
+  .contact-copy{padding:120px 16px 300px}
+}
+@media (max-width:560px){
+  :root{--frame:5px;--header:60px}
+  .hero-copy{padding:40px 16px 20px}
+  .card{flex-basis:300px}
+  .card-code{font-size:88px}
+  .card-body h3{font-size:36px}
+  .slide-code,.slide-info{padding-left:20px;padding-right:20px}
+  .about{padding:70px 12px 110px}
+  .score div{width:50px;height:58px}.score div b{font-size:34px}
+  .btn{font-size:19px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Logo mark: "tn" built from four solid blocks -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="mark">
+<path class="p" d="M10 0 H30 V28 H44 V48 H30 V100 H10 V48 H0 V28 H10 Z"/><path class="p" d="M52 28 H72 V100 H52 Z"/><path class="p" d="M72 28 A28 28 0 0 1 100 56 V100 H80 V58 A8 8 0 0 0 72 50 Z"/>
+    </g>
+  </defs>
+</svg>
+
+<div class="loader" id="loader" aria-hidden="true">
+  <svg viewBox="0 0 100 100"><path class="p" d="M10 0 H30 V28 H44 V48 H30 V100 H10 V48 H0 V28 H10 Z"/><path class="p" d="M52 28 H72 V100 H52 Z"/><path class="p" d="M72 28 A28 28 0 0 1 100 56 V100 H80 V58 A8 8 0 0 0 72 50 Z"/></svg>
+</div>
+
+<canvas id="snow" aria-hidden="true"></canvas>
+
+<div class="site" id="top">
+
+<header class="header" id="header">
+  <a class="logo" href="#top" aria-label="Thai Nguyen – trang chủ"><svg viewBox="0 0 100 100"><use href="#mark"/></svg></a>
+  <nav class="nav" id="nav">
+    <a href="#work" data-i18n="nav_work">Dự án</a>
+    <a href="#services" data-i18n="nav_services">Dịch vụ</a>
+    <a href="#about" data-i18n="nav_about">Giới thiệu</a>
+    <a href="#contact" data-i18n="nav_contact">Liên hệ</a>
+    <a href="#" data-lab>Lab</a>
+  </nav>
+  <button class="lang" id="langBtn" aria-label="Switch to English">EN</button>
+  <a class="cta" href="#contact" data-i18n="cta">Trò chuyện</a>
+  <button class="burger" id="burger" aria-label="Mở menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <svg class="hero-bg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <path class="c1" d="M0 150 Q400 260 900 240 T1600 180 V900 H0Z"/>
+    <path class="c2" d="M0 470 Q500 620 1000 600 T1600 520 V900 H0Z" opacity=".7"/>
+    <path class="c1" d="M0 560 Q600 700 1100 680 T1600 640 V900 H0Z"/>
+    <path class="c2" d="M0 680 Q500 760 1000 750 T1600 700 V900 H0Z" opacity=".8"/>
+    <g class="cloud"><path class="c2" d="M-40 120 Q60 60 200 90 Q300 20 440 60 Q520 20 560 90 Q640 110 620 170 Q560 220 380 220 L-40 230Z"/></g>
+    <g class="cloud slow"><path class="c3" d="M520 470 Q560 400 680 410 Q740 330 880 350 Q980 300 1060 380 Q1180 360 1200 440 Q1220 500 1100 510 L560 520 Q480 510 520 470Z" opacity=".75"/></g>
+    <g class="cloud"><path class="c3" d="M1030 220 Q1080 170 1180 190 Q1260 140 1360 180 Q1460 170 1470 230 Q1450 270 1300 270 L1060 262 Q1000 250 1030 220Z" opacity=".6"/></g>
+  </svg>
+
+  <div class="hero-copy">
+    <h1 class="display rv" data-i18n="hero_h">Xin chào!</h1>
+    <p class="rv" data-i18n="hero_p">Tôi là <strong>Thai Nguyen, PhD</strong> – Tiến sĩ Monash University, <strong>ML Engineer tại Culture Amp</strong>. Tôi giúp doanh nghiệp Việt biến AI từ ý tưởng thành sản phẩm chạy thật: hệ thống RAG, AI Agent, tích hợp LLM, data science và full-stack.</p>
+    <div class="hero-actions rv">
+      <a class="btn solid" href="#contact"><span data-i18n="hero_b1">Đặt lịch tư vấn</span><i>→</i></a>
+      <a class="btn" href="#work"><span data-i18n="hero_b2">Xem dự án</span><i>↓</i></a>
+    </div>
+  </div>
+
+  <!-- Portrait (illustrated from LinkedIn photo) with lidar rings – nod to the PhD -->
+  <div class="hero-art" aria-hidden="true">
+    <svg class="hero-rings" viewBox="-400 -400 800 800">
+      <g class="scan"><path d="M0 0 L380 -70 A386 386 0 0 1 380 70 Z" fill="#fff" opacity=".12"/></g>
+      <circle class="ping" r="380" fill="none" stroke="#fff" stroke-width="3"/>
+      <circle class="ping" r="380" fill="none" stroke="#fff" stroke-width="3"/>
+      <circle class="ping" r="380" fill="none" stroke="#fff" stroke-width="3"/>
+    </svg>
+    <img class="hero-face" src="assets/thai-face.webp" alt="" width="760" height="760" fetchpriority="high">
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section class="work" id="work">
+  <div class="sec-head"><h2 class="display rv" data-i18n="nav_work">Dự án</h2></div>
+  <div class="work-stage">
+    <svg class="hills" viewBox="0 0 1600 700" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 200 Q400 120 800 220 T1600 160 V700 H0Z" fill="#8FC24A"/>
+      <path d="M0 300 Q300 230 700 320 T1600 260 V700 H0Z" fill="#6BA93A"/>
+      <path d="M0 440 Q500 360 900 450 T1600 400 V700 H0Z" fill="#4E9230"/>
+      <path d="M980 700 Q1100 520 1300 420 Q1420 360 1600 330 V700Z" fill="#3E3A6E"/>
+      <path d="M1040 700 Q1150 540 1320 450" stroke="#fff" stroke-width="5" stroke-dasharray="30 26" fill="none" opacity=".6"/>
+    </svg>
+    <div class="carousel" id="carousel" aria-roledescription="carousel"></div>
+    <button class="arrow prev" id="prev" aria-label="Dự án trước">←</button>
+    <button class="arrow next" id="next" aria-label="Dự án tiếp">→</button>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <div class="sec-head">
+    <h2 class="display rv" data-i18n="nav_services">Dịch vụ</h2>
+    <p class="rv" data-i18n="svc_p">Tôi là kỹ sư AI “full-stack”: từ chiến lược, dữ liệu, mô hình đến sản phẩm web và hạ tầng cloud – đưa dự án đi từ con số 0 tới lúc có người dùng thật. Có ý tưởng muốn trao đổi? <a href="#contact">Liên hệ ngay</a>.</p>
+  </div>
+  <div class="rail-wrap">
+    <div class="rail"></div>
+    <div class="cards" id="cards"></div>
+  </div>
+  <div class="hint" data-i18n="hint">← Kéo để xem thêm →</div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <!-- top-down road network: autonomous-driving motif -->
+  <svg class="city" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="1600" height="1000" fill="#3a3a44"/>
+    <g fill="#4E9230">
+      <rect x="0" y="0" width="560" height="380"/><rect x="700" y="0" width="900" height="380"/>
+      <rect x="0" y="520" width="560" height="480"/><rect x="700" y="520" width="900" height="480"/>
+    </g>
+    <g fill="#5DA83A" opacity=".8">
+      <circle cx="120" cy="90" r="50"/><circle cx="220" cy="140" r="40"/><circle cx="1450" cy="120" r="60"/><circle cx="1380" cy="820" r="70"/><circle cx="160" cy="860" r="55"/><circle cx="1000" cy="900" r="45"/>
+    </g>
+    <g stroke="#fff" stroke-width="6" stroke-dasharray="44 36" fill="none" opacity=".85">
+      <line x1="0" y1="450" x2="1600" y2="450"/><line x1="630" y1="0" x2="630" y2="1000"/>
+    </g>
+    <g fill="#fff" opacity=".9"><rect x="570" y="390" width="120" height="8"/><rect x="570" y="502" width="120" height="8"/></g>
+    <g id="bots">
+      <rect x="-80" y="462" width="70" height="36" rx="8" fill="#FFD84D" stroke="#000" stroke-width="4">
+        <animate attributeName="x" from="-80" to="1680" dur="9s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="1680" y="402" width="70" height="36" rx="8" fill="#fff" stroke="#000" stroke-width="4">
+        <animate attributeName="x" from="1680" to="-80" dur="12s" repeatCount="indefinite"/>
+      </rect>
+      <rect x="642" y="-80" width="36" height="70" rx="8" fill="#F0584A" stroke="#000" stroke-width="4">
+        <animate attributeName="y" from="-80" to="1080" dur="10s" repeatCount="indefinite"/>
+      </rect>
+    </g>
+  </svg>
+
+  <div class="about-card rv">
+    <div class="about-grid">
+      <h2 class="display" data-i18n="about_h">Giới<br>thiệu</h2>
+      <div>
+        <h4 data-i18n="bio_h">Tiểu sử</h4>
+        <div data-i18n="bio"><p>Tôi là người Việt, hiện sống và làm việc tại Melbourne. Tôi là <strong>Machine Learning Engineer tại Culture Amp</strong> – nơi tôi phát triển và triển khai các hệ thống RAG cho <em>AI Coach</em>, trợ lý huấn luyện cá nhân hoá cho các nhà quản lý.</p>
+        <p>Tôi có bằng <strong>Tiến sĩ (PhD) về Xe tự hành</strong> và <strong>Thạc sĩ Khoa học Dữ liệu</strong> (High Distinction) tại Monash University. Trước đó tôi là kỹ sư full-stack tại Việt Nam, xây dựng ứng dụng bất động sản cho 50.000 người dùng.</p>
+        <p>Giờ đây tôi mang chuẩn nghiên cứu và kinh nghiệm “AI chạy trong production” về phục vụ doanh nghiệp Việt – nói tiếng Việt, làm việc theo chuẩn quốc tế.</p></div>
+      </div>
+      <div>
+        <h4 data-i18n="roster_h">Đã làm việc cùng</h4>
+        <ul class="roster">
+          <li>Culture Amp</li>
+          <li>Monash University</li>
+          <li>Val.Ai</li>
+          <li>Monash Smart Manufacturing Hub</li>
+          <li>City of Melbourne (Smart City)</li>
+          <li>Aguland</li>
+        </ul>
+        <div class="creds"><span data-i18n="vi_lang">Tiếng Việt</span><span>English</span><span>Melbourne ⇄ Việt Nam</span></div>
+      </div>
+    </div>
+    <div class="ticker">
+      <div class="score" aria-label="Việt Nam 1 – Úc 1"><div><small>VN</small><b>1</b></div><em>–</em><div><small data-i18n="au">ÚC</small><b>1</b></div></div>
+      <div class="marquee"><div class="marquee-track" id="marquee"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <svg class="contact-wave" viewBox="0 0 1600 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0 H1600 V40 Q1200 120 800 60 T0 70Z" fill="var(--accent-d)"/></svg>
+  <!-- giant AI chip -->
+  <svg class="chip" viewBox="0 0 900 760" aria-hidden="true">
+    <g stroke="#000" stroke-width="14" fill="none" stroke-linecap="round">
+      <path d="M300 250 V120 H160"/><path d="M380 250 V60"/><path d="M460 250 V150 H620 V40"/><path d="M540 250 V200 H780"/>
+      <path d="M620 330 H820"/><path d="M620 410 H720 V520 H880"/><path d="M220 330 H60 V200"/><path d="M220 410 H100"/>
+      <path d="M300 490 V640"/><path d="M380 490 V760"/><path d="M460 490 V600 H620 V760"/><path d="M540 490 V540 H760"/>
+    </g>
+    <g fill="#000">
+      <circle cx="160" cy="120" r="22"/><circle cx="380" cy="60" r="22"/><circle cx="620" cy="40" r="22"/><circle cx="780" cy="200" r="22"/><circle cx="820" cy="330" r="22"/><circle cx="60" cy="200" r="22"/><circle cx="100" cy="410" r="22"/><circle cx="300" cy="640" r="22"/><circle cx="760" cy="540" r="22"/>
+    </g>
+    <g fill="#fff">
+      <circle class="pulse" cx="160" cy="120" r="9"/><circle class="pulse" cx="380" cy="60" r="9"/><circle class="pulse" cx="620" cy="40" r="9"/><circle class="pulse" cx="780" cy="200" r="9"/><circle class="pulse" cx="820" cy="330" r="9"/><circle class="pulse" cx="60" cy="200" r="9"/><circle class="pulse" cx="100" cy="410" r="9"/><circle class="pulse" cx="300" cy="640" r="9"/><circle class="pulse" cx="760" cy="540" r="9"/>
+    </g>
+    <rect x="200" y="230" width="440" height="280" rx="40" fill="#000"/>
+    <rect x="250" y="280" width="340" height="180" rx="18" fill="var(--accent-d)"/>
+    <text x="420" y="405" text-anchor="middle" font-family="Gasoek One,sans-serif" font-size="110" fill="#000">AI</text>
+  </svg>
+
+  <div class="contact-copy">
+    <h2 class="display rv" data-i18n="nav_contact">Liên hệ</h2>
+    <p class="rv" data-i18n="contact_p">Kể cho tôi nghe bài toán của bạn – chatbot tri thức nội bộ, tự động hoá quy trình bằng AI Agent, hay một sản phẩm AI mới. Buổi trao đổi đầu tiên 30 phút là miễn phí.</p>
+    <div class="links rv">
+      <a id="lnk-email" href="#">email</a>
+      <a id="lnk-phone" href="#">zalo</a>
+      <a id="lnk-li" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <address class="biz rv">
+      <span><b data-i18n="biz_tax">MST</b> 048094005259</span>
+      <span><b data-i18n="biz_addr">Địa chỉ</b> <span data-i18n="biz_addr_v">43 Thượng Đức, phường Ngũ Hành Sơn, Đà Nẵng, Việt Nam</span></span>
+    </address>
+  </div>
+</section>
+
+<footer class="footer">
+  <svg viewBox="0 0 100 100" aria-hidden="true"><use href="#mark"/></svg>
+  <small>© <span id="yr"></span> Thai Nguyen, PhD · Melbourne ⇄ Việt Nam</small>
+  <small class="foot-biz"><span data-i18n="biz_tax">MST</span>: 048094005259 · <span data-i18n="biz_addr_v">43 Thượng Đức, phường Ngũ Hành Sơn, Đà Nẵng, Việt Nam</span></small>
+</footer>
+
+</div>
+
+<button class="gold-btn" id="goldBtn" aria-pressed="false"><span data-i18n="gold">Vàng</span> <span class="switch"></span></button>
+
+<script>
+/* ======== EDIT YOUR CONTACT DETAILS HERE ======== */
+const CONTACT = {
+  email:  "minhthai1995@gmail.com",
+  phone:  "+84 983 046 205",
+  linkedin: "https://www.linkedin.com/in/thai-nguyen-258968119"
+};
+
+/* ======== DATA ======== */
+const PROJECTS = [
+  {code:"CAI", en:{client:'Culture Amp · AI Coach', desc:'A personalised AI coaching assistant for managers: RAG over internal docs, feedback and best practices, with an NLP retrieval + ranking pipeline.', tags:["RAG","LLM","NLP","Production"]}, client:"Culture Amp · AI Coach", color:"#9B4DFF", art:"chat",
+   desc:"Trợ lý huấn luyện AI cá nhân hoá cho quản lý: hệ thống RAG truy xuất tài liệu nội bộ, phản hồi và best practice, pipeline NLP retrieval + ranking.",
+   tags:["RAG","LLM","NLP","Production"]},
+  {code:"VAL", en:{client:'Val.Ai · Clean energy', desc:'Energy-consumption and emissions forecasting models for zero-emission projects; data pipelines, ETL and a full-stack web app on AWS.', tags:["Forecasting","ETL","AWS","Full-stack"]}, client:"Val.Ai · Năng lượng sạch", color:"#2EC4A6", art:"bars",
+   desc:"Mô hình dự báo tiêu thụ năng lượng & giảm phát thải cho dự án zero-emission; data pipeline, ETL, web app full-stack trên AWS.",
+   tags:["Dự báo","ETL","AWS","Full-stack"]},
+  {code:"AVT", en:{client:'Monash · Autonomous vehicles', desc:'PhD research: autonomous-vehicle testing, real-world scenario simulation and lidar performance evaluation across environmental conditions.', tags:["Lidar","Simulation","Testing","PhD"]}, client:"Monash · Xe tự hành", color:"#FF8A3D", art:"lidar",
+   desc:"Nghiên cứu PhD: kiểm thử xe tự hành, mô phỏng kịch bản thực tế, đánh giá hiệu năng Lidar trong nhiều điều kiện môi trường.",
+   tags:["Lidar","Simulation","Testing","PhD"]},
+  {code:"IOT", en:{client:'Monash Smart Manufacturing Hub', desc:'Integrated and ran the IoT Data Platform – optimising data flow and connectivity between devices in a smart factory.', tags:["IoT","Data platform","Real-time"]}, client:"Monash Smart Manufacturing Hub", color:"#35C8F0", art:"nodes",
+   desc:"Tích hợp và vận hành IoT Data Platform – tối ưu luồng dữ liệu và kết nối giữa các thiết bị trong nhà máy thông minh.",
+   tags:["IoT","Data platform","Real-time"]},
+  {code:"MSC", en:{client:'Melbourne Smart City', desc:'Deep-learning models predicting parking-bay occupancy across the City of Melbourne, plus a website and mobile app.', tags:["Deep learning","Web","Mobile"]}, client:"Melbourne Smart City", color:"#FF6FB5", art:"parking",
+   desc:"Mô hình Deep Learning dự đoán tỉ lệ lấp đầy các ô đỗ xe trên toàn thành phố Melbourne, kèm website và ứng dụng di động.",
+   tags:["Deep learning","Web","Mobile"]},
+  {code:"AGL", en:{client:'Aguland · Real estate', desc:'A real-estate web app serving 50,000 users in Vietnam, built with NuxtJs, NestJs, MongoDB and PostgreSQL.', tags:["NuxtJs","NestJs","50K users"]}, client:"Aguland · Bất động sản", color:"#FFD84D", art:"houses",
+   desc:"Ứng dụng web bất động sản phục vụ 50.000 người dùng tại Việt Nam với NuxtJs, NestJs, MongoDB và PostgreSQL.",
+   tags:["NuxtJs","NestJs","50K users"]},
+  {code:"DKP", en:{client:'Dark-pattern detection', desc:'Master’s thesis (92/100): a serverless architecture that detects deceptive “dark patterns” on e-commerce websites.', tags:["Serverless","NLP","E-commerce"]}, client:"Phát hiện Dark Pattern", color:"#FF5A4E", art:"browser",
+   desc:"Luận văn thạc sĩ (92/100): kiến trúc serverless phát hiện các “dark pattern” lừa dối người dùng trên website thương mại điện tử.",
+   tags:["Serverless","NLP","E-commerce"]},
+  {code:"TVX", en:{client:'Mobile → TV GUI', desc:'An adaptive-GUI algorithm that converts mobile app interfaces to TV screens, plus an automated APK crawler for research.', tags:["Adaptive UI","Android","Research"]}, client:"Mobile → TV GUI", color:"#8FA0FF", art:"tv",
+   desc:"Thuật toán GUI thích ứng chuyển giao diện ứng dụng di động sang màn hình TV; crawler tự động thu thập APK phục vụ nghiên cứu.",
+   tags:["Adaptive UI","Android","Research"]}
+];
+
+const SERVICES = [
+  {code:"RAG", en:{t:'RAG systems', p:'Q&A chatbots over your internal docs, policies and products – with cited answers.', tags:["Vector DB","Semantic search","Re-ranking","Vietnamese","Evaluation","Citations"]}, t:"Hệ thống RAG", c:"#F0584A", g:"linear-gradient(160deg,#B04BD6,#7A2FB8)",
+   p:"Chatbot hỏi–đáp trên tài liệu nội bộ, chính sách, sản phẩm – trả lời có trích nguồn.",
+   tags:["Vector DB","Tìm kiếm ngữ nghĩa","Re-ranking","Tiếng Việt","Đánh giá","Trích nguồn"], b:["KNW","SRC"]},
+  {code:"AGT", en:{t:'AI agents', p:'Agents that automate workflows: read email, update the CRM, draft reports, call tools.', tags:["Tool use","MCP","Claude","Multi-agent","Workflow","CRM"]}, t:"AI Agent", c:"#F5E04E", g:"linear-gradient(160deg,#B8B2C6,#8D86A0)",
+   p:"Agent tự động hoá quy trình: đọc email, cập nhật CRM, soạn báo cáo, gọi công cụ.",
+   tags:["Tool use","MCP","Claude","Multi-agent","Workflow","CRM"], b:["AUT","WFL"]},
+  {code:"LLM", en:{t:'LLM integration', p:'Putting LLMs into your product the right way: prompts, guardrails, cost and data privacy.', tags:["Prompt","Fine-tuning","LoRA","Guardrails","API","Cost"]}, t:"Tích hợp LLM", c:"#C9F25A", g:"linear-gradient(160deg,#6FA79E,#4D8379)",
+   p:"Đưa LLM vào sản phẩm đúng cách: prompt, guardrail, chi phí, bảo mật dữ liệu.",
+   tags:["Prompt","Fine-tuning","LoRA","Guardrails","API","Chi phí"], b:["PRM","FTN"]},
+  {code:"MLE", en:{t:'ML engineering', p:'End-to-end ML pipelines, deployment and monitoring – from notebook to production.', tags:["MLOps","Pipeline","NLP","Ranking","Docker","K8s"]}, t:"ML Engineering", c:"#5CE1FF", g:"linear-gradient(160deg,#E9785E,#C4513B)",
+   p:"Pipeline ML end-to-end, triển khai, giám sát – từ notebook đến production.",
+   tags:["MLOps","Pipeline","NLP","Ranking","Docker","K8s"], b:["OPS","DEP"]},
+  {code:"DAT", en:{t:'Data science', p:'Forecasting, statistical analysis and dashboards for data-driven decisions.', tags:["Forecasting","Statistics","ETL","Python","R","Spark"]}, t:"Data Science", c:"#FF9DE0", g:"linear-gradient(160deg,#4DA6D6,#2F78B0)",
+   p:"Dự báo, phân tích thống kê, dashboard ra quyết định dựa trên dữ liệu.",
+   tags:["Dự báo","Thống kê","ETL","Python","R","Spark"], b:["FCT","BI"]},
+  {code:"FST", en:{t:'Full-stack', p:'Web and mobile apps around your AI product, ready for real users.', tags:["NuxtJs","NestJs","React","PostgreSQL","MongoDB","API"]}, t:"Full-stack", c:"#FFB02E", g:"linear-gradient(160deg,#5C6BC0,#3B4796)",
+   p:"Web app & mobile quanh sản phẩm AI của bạn, sẵn sàng cho người dùng thật.",
+   tags:["NuxtJs","NestJs","React","PostgreSQL","MongoDB","API"], b:["FRO","BCK"]},
+  {code:"CLD", en:{t:'Cloud & DevOps', p:'Serverless AWS infrastructure and automated CI/CD that scales as users grow.', tags:["AWS","Lambda","CloudFormation","CI/CD","Docker","Serverless"]}, t:"Cloud & DevOps", c:"#7CFFB2", g:"linear-gradient(160deg,#D9A441,#B07F1F)",
+   p:"Hạ tầng AWS serverless, CI/CD tự động, mở rộng khi người dùng tăng.",
+   tags:["AWS","Lambda","CloudFormation","CI/CD","Docker","Serverless"], b:["AWS","CI"]},
+  {code:"ADV", en:{t:'Advisory & training', p:'AI strategy, feasibility assessments, workshops and in-house team training.', tags:["Strategy","Workshop","Training","Roadmap","Feasibility","Startup"]}, t:"Tư vấn & Đào tạo", c:"#FF6B6B", g:"linear-gradient(160deg,#9CCB6A,#6E9E3F)",
+   p:"Chiến lược AI, đánh giá khả thi, workshop và đào tạo đội ngũ nội bộ.",
+   tags:["Chiến lược","Workshop","Đào tạo","Lộ trình","Khả thi","Startup"], b:["STR","EDU"]}
+];
+
+const TICKER = ["PhD Monash – Xe tự hành","Thạc sĩ Data Science – HD 87/100","Luận văn 92/100","AI Coach @ Culture Amp","RAG trong production","Web app 50.000 người dùng","IBM – Big Data Spark & Hadoop","Google – Data Analysis with R","2.896 người theo dõi LinkedIn","Melbourne Smart City"];
+
+const TICKER_EN = ["PhD Monash – Autonomous vehicles","Master of Data Science – HD 87/100","Thesis 92/100","AI Coach @ Culture Amp","RAG in production","Web app for 50,000 users","IBM – Big Data Spark & Hadoop","Google – Data Analysis with R","2,896 LinkedIn followers","Melbourne Smart City"];
+
+/* ======== UI STRINGS (English; Vietnamese is the markup itself) ======== */
+const EN = {
+  nav_work:"Work", nav_services:"Services", nav_about:"About", nav_contact:"Contact", cta:"Let’s talk",
+  hero_h:"Hello!",
+  hero_p:"I’m <strong>Thai Nguyen, PhD</strong> – Monash University doctorate and <strong>ML Engineer at Culture Amp</strong>. I help businesses turn AI ideas into products that actually ship: RAG systems, AI agents, LLM integration, data science and full-stack.",
+  hero_b1:"Book a consult", hero_b2:"See the work",
+  svc_p:"I’m a “full-stack” AI engineer: strategy, data, models, web product and cloud infrastructure – taking projects from zero to real users. Got an idea to discuss? <a href=\"#contact\">Get in touch</a>.",
+  hint:"← Drag to see more →",
+  about_h:"About",
+  bio_h:"Bio",
+  bio:"<p>I’m Vietnamese, living and working in Melbourne. I’m a <strong>Machine Learning Engineer at Culture Amp</strong>, where I build and deploy the RAG systems behind <em>AI Coach</em>, a personalised coaching assistant for managers.</p><p>I hold a <strong>PhD in Autonomous Vehicles</strong> and a <strong>Master of Data Science</strong> (High Distinction) from Monash University. Before that I was a full-stack engineer in Vietnam, building a real-estate app for 50,000 users.</p><p>Now I bring research rigour and production AI experience to businesses in Vietnam and beyond – bilingual, working to international standards.</p>",
+  roster_h:"Worked with", vi_lang:"Vietnamese", au:"AU",
+  biz_tax:"Tax ID", biz_addr:"Address", biz_addr_v:"43 Thuong Duc, Ngu Hanh Son Ward, Da Nang, Vietnam",
+  contact_p:"Tell me about your problem – an internal knowledge chatbot, workflow automation with AI agents, or a brand-new AI product. The first 30-minute call is free.",
+  gold:"Gold",
+  work_label:"Project", work_btn:"Build something similar", svc_label:"Service", lab_soon:"Coming soon",
+  title:"Thai Nguyen, PhD | AI Engineer & AI Consulting",
+  desc:"Thai Nguyen – PhD, Monash University; ML Engineer at Culture Amp. RAG systems, AI agents, LLM integration, data science and full-stack development."
+};
+const VI = {work_label:"Dự án", work_btn:"Làm dự án tương tự", svc_label:"Dịch vụ", lab_soon:"Sắp ra mắt",
+  title:document.title, desc:document.querySelector('meta[name="description"]').content};
+document.querySelectorAll("[data-i18n]").forEach(el=>{const k=el.dataset.i18n; if(!(k in VI)) VI[k]=el.innerHTML;});
+let LANG="vi";
+const L=(o,k)=>LANG==="en"&&o.en&&o.en[k]!==undefined?o.en[k]:o[k];
+
+/* ======== PROJECT ART (inline SVG) ======== */
+function art(kind,c){
+  const W=560,H=460; let s="";
+  const rnd=(i)=>{const x=Math.sin(i*999.13)*10000;return x-Math.floor(x)};
+  if(kind==="chat"){
+    s+=`<rect x="80" y="70" width="300" height="80" rx="22" fill="${c}"/><rect x="180" y="180" width="300" height="100" rx="22" fill="#fff"/><rect x="80" y="310" width="240" height="70" rx="22" fill="${c}"/>`;
+    for(let i=0;i<3;i++) s+=`<rect x="110" y="${95+i*0}" width="${200-i*40}" height="10" rx="5" fill="#000" opacity=".5" transform="translate(0,${i*18})"/>`;
+    s+=`<rect x="210" y="205" width="220" height="10" rx="5" fill="#000" opacity=".4"/><rect x="210" y="228" width="180" height="10" rx="5" fill="#000" opacity=".4"/><rect x="210" y="251" width="120" height="10" rx="5" fill="${c}"/>`;
+    s+=`<circle cx="120" cy="345" r="7" fill="#000"/><circle cx="145" cy="345" r="7" fill="#000"/><circle cx="170" cy="345" r="7" fill="#000"/>`;
+  } else if(kind==="bars"){
+    for(let i=0;i<9;i++){const h=60+rnd(i+1)*220; s+=`<rect x="${70+i*48}" y="${380-h}" width="32" height="${h}" rx="4" fill="${c}" opacity="${.45+i*.06}"/>`;}
+    s+=`<polyline points="86,260 134,230 182,250 230,190 278,200 326,150 374,160 422,110 470,90" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round"/><line x1="60" y1="380" x2="500" y2="380" stroke="#fff" stroke-width="2"/>`;
+  } else if(kind==="lidar"){
+    for(let r=0;r<9;r++){const n=28+r*10;for(let i=0;i<n;i++){const a=i/n*Math.PI*2, R=30+r*26+rnd(r*100+i)*8;const x=280+Math.cos(a)*R*1.25,y=240+Math.sin(a)*R*.55;if(y>40&&y<440)s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="2.2" fill="${r%2?c:'#fff'}" opacity="${1-r*.08}"/>`;}}
+    s+=`<rect x="240" y="222" width="80" height="36" rx="8" fill="#fff"/><rect x="266" y="210" width="28" height="14" rx="3" fill="${c}"/>`;
+    s+=`<rect x="420" y="170" width="30" height="60" rx="6" fill="none" stroke="${c}" stroke-width="3"/><rect x="110" y="270" width="60" height="30" rx="6" fill="none" stroke="#fff" stroke-width="3"/>`;
+  } else if(kind==="nodes"){
+    const pts=[[280,230],[120,110],[440,100],[100,340],[460,360],[280,80],[280,390],[180,230],[380,230]];
+    pts.slice(1).forEach(p=>s+=`<line x1="280" y1="230" x2="${p[0]}" y2="${p[1]}" stroke="${c}" stroke-width="3" opacity=".6"/>`);
+    s+=`<line x1="120" y1="110" x2="280" y2="80" stroke="#fff" stroke-width="2" opacity=".4"/><line x1="440" y1="100" x2="460" y2="360" stroke="#fff" stroke-width="2" opacity=".4"/><line x1="100" y1="340" x2="280" y2="390" stroke="#fff" stroke-width="2" opacity=".4"/>`;
+    pts.forEach((p,i)=>s+=`<circle cx="${p[0]}" cy="${p[1]}" r="${i?18:40}" fill="${i?'#fff':c}" stroke="#000" stroke-width="4"/>`);
+  } else if(kind==="parking"){
+    for(let r=0;r<5;r++)for(let i=0;i<8;i++){const f=rnd(r*10+i)>.45;s+=`<rect x="${60+i*56}" y="${60+r*72}" width="44" height="58" rx="4" fill="${f?c:'none'}" stroke="#fff" stroke-width="2" opacity="${f?.9:.5}"/>`;}
+  } else if(kind==="houses"){
+    for(let i=0;i<6;i++){const x=40+i*82,h=120+rnd(i+7)*170,y=390-h;s+=`<rect x="${x}" y="${y}" width="70" height="${h}" fill="${i%2?c:'#fff'}"/><path d="M${x-6} ${y} L${x+35} ${y-40} L${x+76} ${y}Z" fill="${i%2?'#fff':c}"/>`;for(let w=0;w<Math.floor(h/50);w++)s+=`<rect x="${x+14}" y="${y+18+w*46}" width="16" height="20" fill="#0b0b18"/><rect x="${x+40}" y="${y+18+w*46}" width="16" height="20" fill="#0b0b18"/>`;}
+    s+=`<rect x="0" y="390" width="${W}" height="70" fill="#000"/>`;
+  } else if(kind==="browser"){
+    s+=`<rect x="60" y="60" width="440" height="330" rx="14" fill="#fff"/><rect x="60" y="60" width="440" height="40" rx="14" fill="#ddd"/><circle cx="88" cy="80" r="7" fill="#F0584A"/><circle cx="110" cy="80" r="7" fill="#FFD84D"/><circle cx="132" cy="80" r="7" fill="#7CD67C"/>`;
+    s+=`<rect x="90" y="130" width="180" height="16" rx="8" fill="#000" opacity=".2"/><rect x="90" y="160" width="140" height="16" rx="8" fill="#000" opacity=".2"/><rect x="90" y="300" width="160" height="50" rx="10" fill="${c}"/><rect x="270" y="315" width="90" height="20" rx="6" fill="#000" opacity=".12"/>`;
+    s+=`<path d="M390 150 L460 270 H320Z" fill="${c}" stroke="#000" stroke-width="5" stroke-linejoin="round"/><rect x="386" y="185" width="8" height="45" rx="4" fill="#000"/><circle cx="390" cy="248" r="6" fill="#000"/>`;
+  } else if(kind==="tv"){
+    s+=`<rect x="60" y="130" width="120" height="220" rx="18" fill="#fff" stroke="#000" stroke-width="5"/><rect x="74" y="160" width="92" height="150" fill="${c}"/>`;
+    s+=`<path d="M200 240 H270" stroke="#fff" stroke-width="6" stroke-dasharray="10 8"/><path d="M262 226 L284 240 L262 254Z" fill="#fff"/>`;
+    s+=`<rect x="300" y="120" width="220" height="150" rx="10" fill="#fff" stroke="#000" stroke-width="5"/><rect x="314" y="134" width="192" height="122" fill="${c}"/><rect x="390" y="270" width="40" height="30" fill="#fff"/><rect x="350" y="300" width="120" height="12" rx="6" fill="#fff"/>`;
+    for(let i=0;i<3;i++)s+=`<rect x="${326+i*62}" y="150" width="50" height="90" rx="6" fill="#fff" opacity=".6"/>`;
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice"><defs><radialGradient id="g-${kind}" cx="70%" cy="30%" r="80%"><stop offset="0" stop-color="${c}" stop-opacity=".35"/><stop offset="1" stop-color="#0b0b18" stop-opacity="0"/></radialGradient></defs><rect width="${W}" height="${H}" fill="url(#g-${kind})"/>${s}</svg>`;
+}
+
+/* ======== RENDER ======== */
+const car = document.getElementById("carousel");
+let cur=0, slides=[];
+function renderProjects(){
+car.innerHTML = PROJECTS.map((p,i)=>`
+  <article class="slide${i===cur?' on':''}" aria-label="${i+1} / ${PROJECTS.length}">
+    <div>
+      <div class="slide-code">${p.code}</div>
+      <div class="slide-info" style="background:${p.color}">
+        <small>${T("work_label")}</small>
+        <h3>${L(p,"client")}</h3>
+        <p class="desc">${L(p,"desc")}</p>
+        <div class="tagline">${L(p,"tags").map(t=>`<span>${t}</span>`).join("")}</div>
+        <div class="slide-foot">
+          <a class="btn" href="#contact"><span>${T("work_btn")}</span><i>→</i></a>
+          <span class="count">${i+1}/${PROJECTS.length}</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-art">${art(p.art,p.color)}</div>
+  </article>`).join("");
+slides=[...car.children];
+}
+function go(n){slides[cur].classList.remove("on");cur=(n+slides.length)%slides.length;slides[cur].classList.add("on");}
+document.getElementById("prev").onclick=()=>go(cur-1);
+document.getElementById("next").onclick=()=>go(cur+1);
+document.addEventListener("keydown",e=>{
+  const r=document.getElementById("work").getBoundingClientRect();
+  if(r.top<innerHeight*.5&&r.bottom>innerHeight*.5){if(e.key==="ArrowLeft")go(cur-1);if(e.key==="ArrowRight")go(cur+1);}
+});
+
+const cards=document.getElementById("cards");
+function renderServices(){
+cards.innerHTML=SERVICES.map((s,i)=>{
+  const tl=L(s,"tags").map((t,j)=>`<span class="${j%2?'dn':'up'}" style="left:${12+j*15.2}%">${t}</span>`).join("");
+  return `<article class="card" style="--c:${s.c};--g:${s.g};--r:${[-2.5,1.8,-1.2,2.4,-2,1.4,-1.6,2.2][i]}deg">
+    <div class="card-top"><div class="pin"><span>${s.code}</span><b></b><span>SV-0${i+1}</span></div><div class="card-code">${s.code}</div></div>
+    <div class="card-body"><small>${T("svc_label")}</small><h3>${L(s,"t")}</h3><p>${L(s,"p")}</p><div class="timeline">${tl}</div>
+    <div class="card-bottom"><span>${s.b[0]}</span><span>${s.b[1]}</span></div></div></article>`;
+}).join("");
+}
+
+// drag-to-scroll for the service rail
+(()=>{let down=false,x0=0,s0=0,moved=false;
+  cards.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse")return;down=true;moved=false;x0=e.clientX;s0=cards.scrollLeft;cards.classList.add("drag");});
+  addEventListener("pointermove",e=>{if(!down)return;const dx=e.clientX-x0;if(Math.abs(dx)>3)moved=true;cards.scrollLeft=s0-dx;});
+  addEventListener("pointerup",()=>{down=false;cards.classList.remove("drag");});
+  cards.addEventListener("click",e=>{if(moved){e.preventDefault();e.stopPropagation();}},true);
+})();
+
+function renderTicker(){
+const items=(LANG==="en"?TICKER_EN:TICKER).map(t=>`<span>${t}</span><span class="sl">/</span>`).join("");
+document.getElementById("marquee").innerHTML=items+items;
+}
+
+// language switch: ?lang=en|vi > saved choice > Vietnamese
+function T(k){return (LANG==="en"?EN:VI)[k];}
+function setLang(l){
+  LANG=l==="en"?"en":"vi";
+  document.documentElement.lang=LANG;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{el.innerHTML=T(el.dataset.i18n);});
+  document.title=T("title");
+  document.querySelector('meta[name="description"]').content=T("desc");
+  const b=document.getElementById("langBtn");
+  b.textContent=LANG==="en"?"VI":"EN";
+  b.setAttribute("aria-label",LANG==="en"?"Chuyển sang tiếng Việt":"Switch to English");
+  renderProjects(); renderServices(); renderTicker();
+  try{localStorage.setItem("tn-lang",LANG)}catch(e){}
+}
+document.getElementById("langBtn").onclick=()=>setLang(LANG==="en"?"vi":"en");
+{let l=new URLSearchParams(location.search).get("lang");
+ if(!l){try{l=localStorage.getItem("tn-lang")}catch(e){}}
+ setLang(l||"vi");}
+
+// contact links
+const $=id=>document.getElementById(id);
+$("lnk-email").textContent=CONTACT.email; $("lnk-email").href="mailto:"+CONTACT.email;
+$("lnk-phone").textContent=CONTACT.phone; $("lnk-phone").href="tel:"+CONTACT.phone.replace(/[^\d+]/g,"");
+$("lnk-li").href=CONTACT.linkedin;
+$("yr").textContent=new Date().getFullYear();
+
+// mobile menu
+const burger=$("burger");
+burger.onclick=()=>{const o=document.body.classList.toggle("menu-open");burger.setAttribute("aria-expanded",o);};
+document.querySelectorAll(".nav a").forEach(a=>a.addEventListener("click",()=>{document.body.classList.remove("menu-open");burger.setAttribute("aria-expanded","false");}));
+document.querySelector("[data-lab]").addEventListener("click",e=>{e.preventDefault();e.target.textContent=T("lab_soon");setTimeout(()=>e.target.textContent="Lab",1600);});
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+
+// preloader
+setTimeout(()=>$("loader").classList.add("done"),1300);
+
+// gold mode + falling gold
+const goldBtn=$("goldBtn"), cv=$("snow"), ctx=cv.getContext("2d");
+let flakes=[],raf=null;
+function size(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;}
+function tick(){
+  ctx.clearRect(0,0,cv.width,cv.height);
+  const d=devicePixelRatio;
+  flakes.forEach(f=>{f.y+=f.v;f.x+=Math.sin(f.y/40+f.p)*.6;f.a+=f.s;if(f.y>innerHeight+10){f.y=-10;f.x=Math.random()*innerWidth;}
+    ctx.save();ctx.translate(f.x*d,f.y*d);ctx.rotate(f.a);ctx.fillStyle=f.c;ctx.fillRect(-f.r*d,-f.r*d*.5,f.r*2*d,f.r*d);ctx.restore();});
+  raf=requestAnimationFrame(tick);
+}
+function setGold(on){
+  document.body.classList.toggle("gold",on);goldBtn.setAttribute("aria-pressed",on);
+  try{localStorage.setItem("tn-gold",on?"1":"0")}catch(e){}
+  cancelAnimationFrame(raf);
+  if(on&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
+    size();flakes=Array.from({length:90},()=>({x:Math.random()*innerWidth,y:Math.random()*innerHeight,v:.6+Math.random()*1.6,r:2+Math.random()*4,p:Math.random()*6,a:Math.random()*6,s:(Math.random()-.5)*.1,c:["#FFD700","#FFF2B0","#E8A900","#fff"][Math.floor(Math.random()*4)]}));tick();
+  }
+}
+goldBtn.onclick=()=>setGold(!document.body.classList.contains("gold"));
+addEventListener("resize",()=>{if(document.body.classList.contains("gold"))size();});
+try{if(localStorage.getItem("tn-gold")==="1")setGold(true)}catch(e){}
+</script>
+</body>
+</html>
